@@ -1,1 +1,36 @@
+@import url(mainPage.css);
+@import url(blogPage.css);
 
+@font-face {
+	font-family: "HelveticaRounded";
+	src: url(/assets/Helvetica\ Rounded\ Bold.otf);
+	src: url(SP7N0bl0g.github.io/assets/Helvetica\ Rounded\ Bold.otf);
+}
+
+@keyframes showup {
+	0% {
+		top: -1000px;
+	}
+
+	100% {
+		top: 0px;
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+:root {
+	--color-primary: hsl(204, 50%, 90%);
+	--color-secondary: hsl(204, 50%, 10%);
+	--color-tertiary: hsl(264, 80%, 20%);
+	--color-accent: hsl(144, 80%, 20%);
+	--nav-height: 80px;
+}
