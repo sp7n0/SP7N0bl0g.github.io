@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIDcalc</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="Log-in">
+        <h1>KIDcalc</h1>
+        <form id="loginForm">
+            <input type="text" placeholder="Username">
+            <input type="number" placeholder="Age">
+            <input type="password" placeholder="Password">
+            <div class="theme-selection">
+                <h3>Choose Your Theme:</h3>
+                <div class="theme-options">
+                    <label>
+                        <input type="radio" name="theme" value="theme-1" checked>
+                        <span class="theme-label marvel">Marvel Theme</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="theme" value="theme-2">
+                        <span class="theme-label cars">Cars Theme</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="theme" value="theme-3">
+                        <span class="theme-label batman">Batman Theme</span>
+                    </label>
+                </div>
+            </div>
+            <input type="submit" id="log-in" value="Log-in">
+        </form>
+        <div class="Done">
+            <h1>DONE!<br>LOG-IN SUCCESSFUL!</h1>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="Calculator">
+            <div class="Calculator-Body">
+                <div class="Calculator-Display">
+                    <div class="display-container">
+                        <div class="expression-box">0</div>
+                        <div class="answer-box">
+                            <input type="number" placeholder="Enter your answer" class="answer-input">
+                        </div>
+                        <div class="results-box"></div>
+                    </div>
+                </div>
+                <div class="Calculator-Buttons">
+                    <div class="Calculator-Buttons-Grid">
+                        <button class="number-btn">7</button>
+                        <button class="number-btn">8</button>
+                        <button class="number-btn">9</button>
+                        <button class="operator-btn">+</button>
+                        <button class="number-btn">4</button>
+                        <button class="number-btn">5</button>
+                        <button class="number-btn">6</button>
+                        <button class="operator-btn">-</button>
+                        <button class="number-btn">1</button>
+                        <button class="number-btn">2</button>
+                        <button class="number-btn">3</button>
+                        <button class="operator-btn">></button>
+                        <button class="number-btn">0</button>
+                        <button class="operator-btn">=</button>
+                        <button class="operator-btn"><</button>
+                    </div>
+                    <div class="Calculator-Controls">
+                        <button id="submit-btn">Submit</button>
+                        <button id="clear-btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const htmlElement = document.documentElement;
+            const mainContent = document.querySelector('.Main');
+            const doneMessage = document.querySelector('.Done');
+
+            // Initially hide the main content
+            mainContent.style.display = 'none';
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get selected theme
+                const selectedTheme = document.querySelector('input[name="theme"]:checked').value;
+
+                // Remove all theme classes
+                htmlElement.classList.remove('theme-1', 'theme-2', 'theme-3');
+                
+                // Add selected theme class
+                htmlElement.classList.add(selectedTheme);
+
+                // Show success message
+                doneMessage.style.display = 'block';
+
+                // Show main content after a delay
+                setTimeout(() => {
+                    document.querySelector('.Log-in').style.display = 'none';
+                    mainContent.style.display = 'block';
+                }, 2000);
+            });
+
+            const expressionBox = document.querySelector('.expression-box');
+            const answerInput = document.querySelector('.answer-input');
+            const resultsBox = document.querySelector('.results-box');
+            const numberButtons = document.querySelectorAll('.number-btn');
+            const operatorButtons = document.querySelectorAll('.operator-btn');
+            const submitButton = document.getElementById('submit-btn');
+            const clearButton = document.getElementById('clear-btn');
+
+            let expression = '';
+            let isComparison = false;
+
+            // Handle number buttons
+            numberButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    expression += button.textContent;
+                    expressionBox.textContent = expression;
+                });
+            });
+
+            // Handle operator buttons
+            operatorButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const operator = button.textContent;
+                    if (operator === '>' || operator === '<') {
+                        isComparison = true;
+                        answerInput.style.display = 'none';
+                    } else {
+                        isComparison = false;
+                        answerInput.style.display = 'block';
+                    }
+                    expression += ' ' + operator + ' ';
+                    expressionBox.textContent = expression;
+                });
+            });
+
+            // Handle submit button
+            submitButton.addEventListener('click', () => {
+                if (!expression) return;
+
+                if (isComparison) {
+                    // Handle comparison
+                    const [num1, operator, num2] = expression.split(' ');
+                    const result = eval(`${num1} ${operator} ${num2}`);
+                    resultsBox.textContent = result ? 'Correct!' : 'Try again!';
+                } else {
+                    // Handle equation
+                    const userAnswer = parseFloat(answerInput.value);
+                    const correctAnswer = eval(expression);
+                    resultsBox.textContent = Math.abs(userAnswer - correctAnswer) < 0.0001 ? 
+                        'Correct!' : 'Try again!';
+                }
+            });
+
+            // Handle clear button
+            clearButton.addEventListener('click', () => {
+                expression = '';
+                expressionBox.textContent = '0';
+                answerInput.value = '';
+                resultsBox.textContent = '';
+                answerInput.style.display = 'block';
+                isComparison = false;
+            });
+        });
+    </script>
+
+    <style>
+        /* Responsive styles */
+        :root {
+            --calc-width: min(90%, 400px);
+            --button-size: clamp(45px, 10vw, 60px);
+            --font-size-large: clamp(24px, 5vw, 32px);
+            --font-size-medium: clamp(18px, 4vw, 24px);
+            --font-size-small: clamp(14px, 3vw, 18px);
+        }
+
+        .Log-in {
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .Log-in form {
+            width: var(--calc-width);
+            padding: 20px;
+        }
+
+        .Calculator {
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            height: auto;
+        }
+
+        .Calculator-Body {
+            width: var(--calc-width);
+            padding: clamp(16px, 4vw, 24px);
+            margin: 20px auto;
+            gap: 20px;
+        }
+
+        .Calculator-Display {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: clamp(12px, 3vw, 20px);
+            width: 100%;
+        }
+
+        .display-container {
+            gap: clamp(10px, 2vw, 15px);
+        }
+
+        .expression-box {
+            font-size: var(--font-size-large);
+            min-height: calc(var(--font-size-large) * 1.5);
+            padding: clamp(8px, 2vw, 15px);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        .answer-input {
+            font-size: var(--font-size-medium);
+            padding: clamp(10px, 2vw, 15px);
+        }
+
+        .results-box {
+            font-size: var(--font-size-medium);
+            min-height: calc(var(--font-size-medium) * 1.5);
+        }
+
+        .Calculator-Buttons {
+            width: 100%;
+            padding: clamp(12px, 3vw, 20px);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .Calculator-Buttons-Grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(8px, 2vw, 12px);
+            margin-bottom: clamp(12px, 3vw, 20px);
+        }
+
+        .Calculator-Buttons button {
+            width: var(--button-size);
+            height: var(--button-size);
+            font-size: var(--font-size-medium);
+            border-radius: 10px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .Calculator-Controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(8px, 2vw, 12px);
+        }
+
+        .Calculator-Controls button {
+            width: 100%;
+            height: var(--button-size);
+        }
+
+        @media (max-width: 360px) {
+            :root {
+                --button-size: clamp(40px, 8vw, 45px);
+            }
+
+            .Calculator-Body {
+                padding: 12px;
+            }
+
+            .Calculator-Buttons {
+                padding: 10px;
+            }
+
+            .Calculator-Buttons-Grid {
+                gap: 6px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .Calculator-Body {
+                max-width: 500px;
+            }
+
+            .Calculator-Buttons button {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .Calculator-Buttons button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        }
+    </style>
+</body>
+</html>
