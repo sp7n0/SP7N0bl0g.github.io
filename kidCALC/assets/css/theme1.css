@@ -1,0 +1,72 @@
+/* Theme 1 - Marvel Theme */
+.theme-1 {
+    --primary-color: #E23636;    /* Marvel Red */
+    --secondary-color: #F1C40F;  /* Heroic Gold */
+    --accent-color: #0D47A1;     /* Deep Marvel Blue */
+    --success-color: #2ECC71;    /* Hulk Green */
+    --operation-color: #E23636;  /* Marvel Red for operations */
+    --operation-hover: #C62828;  /* Darker Red for hover */
+    --text-light: #FFFFFF;       /* White text */
+    --text-dark: #202020;        /* Dark Gray text */
+    --shadow-light: rgba(226,54,54,0.2);  /* Red-tinted shadow */
+    --shadow-dark: rgba(13,71,161,0.3);   /* Blue-tinted shadow */
+    --shadow-accent: rgba(226,54,54,0.4); /* Marvel Red shadow */
+    --marvel-bg: url('https://cdn.marvel.com/content/1x/avas_p_0189_ss13_copy.jpg');
+    --marvel-calc-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWFMGGUzYwGJVCDNQBEuXDF9GWGEZgKKPxw&s');
+}
+
+/* Add background styling to Calculator */
+.theme-1 .Calculator {
+    background-image: var(--marvel-bg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    position: relative !important;
+}
+
+/* Add overlay to make content more readable */
+.theme-1 .Calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay for better contrast */
+    z-index: 1;
+}
+
+/* Ensure calculator content stays above overlay */
+.theme-1 .Calculator-Body {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+    background-color: rgba(13, 71, 161, 0.8) !important; /* Semi-transparent Marvel blue */
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 0 20px var(--shadow-accent);
+    background-image: var(--marvel-calc-bg) !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.theme-1 .Calculator-Buttons button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 45px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.theme-1 .Calculator-Buttons button:hover {
+    background-color: var(--text-light);
+    color: var(--operation-color);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 4px 12px var(--shadow-dark);
+}
+

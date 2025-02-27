@@ -1,0 +1,101 @@
+/* Theme 3 - Batman Theme */
+.theme-3 {
+    --primary-color: #1a1a1a;    /* Dark Knight Black */
+    --secondary-color: #ffd700;  /* Bat Signal Gold */
+    --accent-color: #4a4a4a;     /* Gotham Gray */
+    --success-color: #3498db;    /* Batman Blue */
+    --operation-color: #ffd700;  /* Bat Signal Gold for operations */
+    --operation-hover: #ffed4a;  /* Brighter Gold for hover */
+    --text-light: #ffffff;       /* White text */
+    --text-dark: #1a1a1a;        /* Dark Knight Black text */
+    --shadow-light: rgba(255,215,0,0.2);  /* Gold-tinted shadow */
+    --shadow-dark: rgba(26,26,26,0.5);   /* Dark shadow */
+    --shadow-accent: rgba(255,215,0,0.4); /* Bat Signal shadow */
+    --batman-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUrVHVdVyNHFDnCMXYdsh8Oz18Vo9oovRn6g&s');
+}
+
+/* Add background styling to Calculator */
+.theme-3 .Calculator {
+    background-image: var(--batman-bg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    position: relative !important;
+}
+
+/* Add overlay to make content more readable */
+.theme-3 .Calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay for Batman theme */
+    z-index: 1;
+}
+
+/* Ensure calculator content stays above overlay */
+.theme-3 .Calculator-Body {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    background-color: rgba(26, 26, 26, 0.9) !important; /* Nearly black background */
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 30px var(--shadow-accent);
+    clip-path: polygon(
+        20px 0, 
+        calc(100% - 20px) 0, 
+        100% 20px, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        20px 100%, 
+        0 calc(100% - 20px), 
+        0 20px
+    ); /* Batman-style angular corners */
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Custom styling for buttons in Batman theme */
+.theme-3 .Calculator-Buttons button {
+    background: linear-gradient(145deg, var(--accent-color), var(--primary-color));
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    text-shadow: 0 0 5px var(--shadow-accent);
+    clip-path: polygon(
+        10px 0, 
+        calc(100% - 10px) 0, 
+        100% 10px, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        10px 100%, 
+        0 calc(100% - 10px), 
+        0 10px
+    ); /* Smaller angular corners for buttons */
+}
+
+.theme-3 .Calculator-Buttons button:hover {
+    background: linear-gradient(145deg, var(--secondary-color), var(--operation-hover));
+    color: var(--text-dark);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px var(--shadow-accent);
+}
+
+/* Special styling for the display in Batman theme */
+.theme-3 .Calculator-Display {
+    border: 2px solid var(--secondary-color);
+    background: linear-gradient(145deg, var(--primary-color), var(--accent-color));
+    text-shadow: 0 0 10px var(--secondary-color);
+    clip-path: polygon(
+        15px 0, 
+        calc(100% - 15px) 0, 
+        100% 15px, 
+        100% calc(100% - 15px), 
+        calc(100% - 15px) 100%, 
+        15px 100%, 
+        0 calc(100% - 15px), 
+        0 15px
+    ); /* Angular corners for display */
+}

@@ -1,0 +1,66 @@
+/* Theme 2 - Automotive Theme */
+.theme-2 {
+    --primary-color: #2C3E50;    /* Metallic Blue */
+    --secondary-color: #E74C3C;  /* Racing Red */
+    --accent-color: #F39C12;     /* Signal Orange */
+    --success-color: #27AE60;    /* Speed Green */
+    --operation-color: #E74C3C;  /* Racing Red for operations */
+    --operation-hover: #C0392B;  /* Darker Red for hover */
+    --text-light: #ECF0F1;       /* Pearl White */
+    --text-dark: #2C3E50;        /* Metallic Dark */
+    --shadow-light: rgba(44,62,80,0.2);  /* Metallic shadow */
+    --shadow-dark: rgba(44,62,80,0.4);   /* Darker metallic shadow */
+    --shadow-accent: rgba(231,76,60,0.4); /* Racing Red shadow */
+    --car-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ3rwVWf7sWMbiZuJKnuQfwDsjgVdo7rXNGw&s');
+}
+
+/* Add background styling to Calculator */
+.theme-2 .Calculator {
+    background-image: var(--car-bg) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    position: relative !important;
+}
+
+/* Add overlay to make content more readable */
+.theme-2 .Calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay for better contrast */
+    z-index: 1;
+}
+
+/* Ensure calculator content stays above overlay */
+.theme-2 .Calculator-Body {
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    background-color: rgba(44, 62, 80, 0.85) !important; /* Semi-transparent Metallic */
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 25px var(--shadow-accent);
+    border-radius: 20px;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Custom styling for buttons in automotive theme */
+.theme-2 .Calculator-Buttons button {
+    background: linear-gradient(145deg, var(--primary-color), var(--shadow-dark));
+    border: 1px solid var(--accent-color);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.theme-2 .Calculator-Buttons  button:hover {
+    background: linear-gradient(145deg, var(--success-color), var(--text-dark));
+    color: var(--text-light);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 15px var(--shadow-accent);
+}
+
