@@ -1,0 +1,272 @@
+@import url(theme1.css);
+@import url(theme2.css);
+@import url(theme3.css);
+
+/* Base variables - will be overridden by theme-specific ones */
+:root {
+    --primary-color: #E23636;    /* Default - Marvel Red */
+    --secondary-color: #F1C40F;  /* Default - Heroic Gold */
+    --accent-color: #0D47A1;     /* Default - Deep Marvel Blue */
+    --success-color: #2ECC71;    /* Default - Hulk Green */
+    --operation-color: #E23636;  /* Default - Marvel Red */
+    --operation-hover: #C62828;  /* Default - Darker Red */
+    --text-light: #FFFFFF;       /* Default - White */
+    --text-dark: #202020;        /* Default - Dark Gray */
+    --shadow-light: rgba(226,54,54,0.2);  /* Default - Red shadow */
+    --shadow-dark: rgba(13,71,161,0.3);   /* Default - Blue shadow */
+    --shadow-accent: rgba(226,54,54,0.4); /* Default - Red accent */
+}
+
+/* Theme-specific nav styling */
+.theme-1 nav {
+    background-color: var(--primary-color);
+}
+
+.theme-2 nav {
+    background-color: var(--primary-color);
+}
+
+.theme-3 nav {
+    background-color: var(--primary-color);
+}
+
+/* Load our custom fonts */
+@font-face {
+    font-family: "HelveticaRounded";
+    src: url(/assets/Helvetica\ Rounded\ Bold.otf);
+}
+
+@font-face {
+    font-family: "HelveticaGit"; 
+    src: url(SP7N0bl0g.github.io/kidCALC/assets/Helvetica\ Rounded\ Bold.otf);
+}
+
+/* Some cool animations we'll use throughout */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Let's start fresh */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "HelveticaRounded", "HelveticaGit", "Helvetica", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* The login screen - takes up the whole viewport */
+.Log-in {
+    padding: 8px;
+    width: 100%;
+
+    background-color: var(--accent-color);
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+/* Make the login form look nice and centered */
+.Log-in form {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    animation: slideUp 0.6s ease-out;
+}
+
+/* Style those input boxes */
+.Log-in form input[type="text"],
+.Log-in form input[type="password"],
+.Log-in form input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 3px solid var(--primary-color);
+    border-radius: 15px;
+    font-size: 16px;
+    background-color: var(--text-light);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Make inputs look interactive when focused/hovered */
+.Log-in form input[type="text"]:focus,
+.Log-in form input[type="password"]:focus,
+.Log-in form input[type="number"]:focus {
+    outline: none;
+    border-color: var(--success-color);
+    box-shadow: 0 0 10px rgba(0,255,0,0.2);
+    transform: scale(1.02);
+}
+
+.Log-in form input[type="text"]:hover,
+.Log-in form input[type="password"]:hover,
+.Log-in form input[type="number"]:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* A pulsing login button */
+#log-in {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    background-color: var(--success-color);
+    border: none;
+    border-radius: 5px;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+#log-in:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+/* Success message that pops in when logged in */
+.Done {
+    display: none;
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--text-light);
+    font-weight: bold;
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* The main calculator container */
+.Calculator {
+    padding: 8px;
+    width: 100%;
+    height: 150vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-in;
+}
+
+/* The calculator's main body */
+.Calculator-Body {
+    padding: 16px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    animation: slideIn 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+/* The display screen with that cool glow effect */
+.Calculator-Display {
+    padding: 16px;
+    width: 90%;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    position: relative;
+    overflow: visible;
+}
+
+.answer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer-box input {
+    width: 90%;
+}
+
+/* Where all the buttons live */
+.Calculator-Buttons {
+    border-radius: 10px;
+    padding: 16px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Make the buttons look clickable and fun */
+.Calculator-Buttons button {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 45px;
+    animation: fadeIn 0.5s ease-in;
+    margin: 5px;
+}
+
+.Calculator-Buttons button:hover {
+    color: var(--operation-color);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 4px 12px var(--shadow-dark);
+}
+
+/* Organize buttons in nice rows */
+.Calculator-Buttons-Row-1,
+.Calculator-Buttons-Row-2 {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Make operation buttons stand out */
+.Calculator-Buttons-Row-2 button {
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+.Calculator-Buttons-Row-2 button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--shadow-accent);
+}
