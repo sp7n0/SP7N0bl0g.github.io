@@ -12,6 +12,7 @@
     --shadow-dark: rgba(26,26,26,0.5);   /* Dark shadow */
     --shadow-accent: rgba(255,215,0,0.4); /* Bat Signal shadow */
     --batman-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUrVHVdVyNHFDnCMXYdsh8Oz18Vo9oovRn6g&s');
+    --batman-decoration: url('https://wallpapers.com/images/featured/batman-jwwt4ganu79qj9sz.jpg'); /* Additional decorative image */
 }
 
 /* Add background styling to Calculator */
@@ -98,4 +99,35 @@
         0 calc(100% - 15px), 
         0 15px
     ); /* Angular corners for display */
+}
+
+/* Add decorative element */
+.theme-3 .Calculator-Display::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    z-index: 3;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    box-shadow: 0 0 25px var(--shadow-accent);
+}
+
+.theme-3 .Calculator-Body::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 120px;
+    height: 120px;
+    background-image: var(--batman-decoration);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 3;
+    border-radius: 10px;
+    transform: rotate(-15deg);
+    box-shadow: 0 0 20px var(--shadow-accent);
 }

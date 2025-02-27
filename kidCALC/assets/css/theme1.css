@@ -12,7 +12,7 @@
     --shadow-dark: rgba(13,71,161,0.3);   /* Blue-tinted shadow */
     --shadow-accent: rgba(226,54,54,0.4); /* Marvel Red shadow */
     --marvel-bg: url('https://cdn.marvel.com/content/1x/avas_p_0189_ss13_copy.jpg');
-    --marvel-calc-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWFMGGUzYwGJVCDNQBEuXDF9GWGEZgKKPxw&s');
+    --marvel-decoration: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdS-jvkbBRrj7uKjCvS2HGdd6e0vmW6BEY3Q&s'); /* Additional decorative image */
 }
 
 /* Add background styling to Calculator */
@@ -44,7 +44,6 @@
     background-color: rgba(13, 71, 161, 0.8) !important; /* Semi-transparent Marvel blue */
     border: 3px solid var(--secondary-color);
     box-shadow: 0 0 20px var(--shadow-accent);
-    background-image: var(--marvel-calc-bg) !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -68,5 +67,22 @@
     color: var(--operation-color);
     transform: scale(1.1) translateY(-3px);
     box-shadow: 0 4px 12px var(--shadow-dark);
+}
+
+/* Add decorative element */
+.theme-1 .Calculator-Body::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -25px;
+    width: 100px;
+    height: 100px;
+    background-image: var(--marvel-decoration);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 3;
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--shadow-accent);
 }
 

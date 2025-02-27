@@ -12,6 +12,7 @@
     --shadow-dark: rgba(44,62,80,0.4);   /* Darker metallic shadow */
     --shadow-accent: rgba(231,76,60,0.4); /* Racing Red shadow */
     --car-bg: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ3rwVWf7sWMbiZuJKnuQfwDsjgVdo7rXNGw&s');
+    --car-decoration: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFeVQBg2AK80h-u01-YKNI1sqEWty2M3r66A&s'); /* Additional decorative image */
 }
 
 /* Add background styling to Calculator */
@@ -62,5 +63,23 @@
     color: var(--text-light);
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 0 15px var(--shadow-accent);
+}
+
+/* Add decorative element */
+.theme-2 .Calculator-Body::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 120px;
+    height: 120px;
+    background-image: var(--car-decoration);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 3;
+    border-radius: 10px;
+    transform: rotate(-15deg);
+    box-shadow: 0 0 20px var(--shadow-accent);
 }
 
