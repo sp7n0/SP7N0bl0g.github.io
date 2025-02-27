@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="theme-1">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIDcalc</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
     <div class="Log-in">
         <h1>KIDcalc</h1>
@@ -76,7 +78,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const loginForm = document.getElementById('loginForm');
             const htmlElement = document.documentElement;
             const mainContent = document.querySelector('.Main');
@@ -85,7 +87,7 @@
             // Initially hide the main content
             mainContent.style.display = 'none';
 
-            loginForm.addEventListener('submit', function(event) {
+            loginForm.addEventListener('submit', function (event) {
                 event.preventDefault();
 
                 // Get selected theme
@@ -93,7 +95,7 @@
 
                 // Remove all theme classes
                 htmlElement.classList.remove('theme-1', 'theme-2', 'theme-3');
-                
+
                 // Add selected theme class
                 htmlElement.classList.add(selectedTheme);
 
@@ -155,7 +157,7 @@
                     // Handle equation
                     const userAnswer = parseFloat(answerInput.value);
                     const correctAnswer = eval(expression);
-                    resultsBox.textContent = Math.abs(userAnswer - correctAnswer) < 0.0001 ? 
+                    resultsBox.textContent = Math.abs(userAnswer - correctAnswer) < 0.0001 ?
                         'Correct!' : 'Try again!';
                 }
             });
@@ -171,137 +173,6 @@
             });
         });
     </script>
-
-    <style>
-        /* Responsive styles */
-        :root {
-            --calc-width: min(90%, 400px);
-            --button-size: clamp(45px, 10vw, 60px);
-            --font-size-large: clamp(24px, 5vw, 32px);
-            --font-size-medium: clamp(18px, 4vw, 24px);
-            --font-size-small: clamp(14px, 3vw, 18px);
-        }
-
-        .Log-in {
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .Log-in form {
-            width: var(--calc-width);
-            padding: 20px;
-        }
-
-        .Calculator {
-            min-height: 100vh;
-            padding: 20px;
-            margin: 0;
-            height: auto;
-        }
-
-        .Calculator-Body {
-            width: var(--calc-width);
-            padding: clamp(16px, 4vw, 24px);
-            margin: 20px auto;
-            gap: 20px;
-        }
-
-        .Calculator-Display {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: clamp(12px, 3vw, 20px);
-            width: 100%;
-        }
-
-        .display-container {
-            gap: clamp(10px, 2vw, 15px);
-        }
-
-        .expression-box {
-            font-size: var(--font-size-large);
-            min-height: calc(var(--font-size-large) * 1.5);
-            padding: clamp(8px, 2vw, 15px);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            text-align: right;
-        }
-
-        .answer-input {
-            font-size: var(--font-size-medium);
-            padding: clamp(10px, 2vw, 15px);
-        }
-
-        .results-box {
-            font-size: var(--font-size-medium);
-            min-height: calc(var(--font-size-medium) * 1.5);
-        }
-
-        .Calculator-Buttons {
-            width: 100%;
-            padding: clamp(12px, 3vw, 20px);
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        .Calculator-Buttons-Grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: clamp(8px, 2vw, 12px);
-            margin-bottom: clamp(12px, 3vw, 20px);
-        }
-
-        .Calculator-Buttons button {
-            width: var(--button-size);
-            height: var(--button-size);
-            font-size: var(--font-size-medium);
-            border-radius: 10px;
-            padding: 0;
-            margin: 0;
-        }
-
-        .Calculator-Controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(8px, 2vw, 12px);
-        }
-
-        .Calculator-Controls button {
-            width: 100%;
-            height: var(--button-size);
-        }
-
-        @media (max-width: 360px) {
-            :root {
-                --button-size: clamp(40px, 8vw, 45px);
-            }
-
-            .Calculator-Body {
-                padding: 12px;
-            }
-
-            .Calculator-Buttons {
-                padding: 10px;
-            }
-
-            .Calculator-Buttons-Grid {
-                gap: 6px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .Calculator-Body {
-                max-width: 500px;
-            }
-
-            .Calculator-Buttons button {
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-            }
-
-            .Calculator-Buttons button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-        }
-    </style>
 </body>
+
 </html>
